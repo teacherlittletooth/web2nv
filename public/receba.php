@@ -1,4 +1,6 @@
 <?php
+    use Database\Database;
+
     if( isset($_POST['email']) ) {
         $email = $_POST['email'];
     } else {
@@ -11,13 +13,39 @@
         $pass = null;
     }
 
+//////////////////////////////////////////////////////////////////////////
+
+require_once "../src/model/Database.php";
+$db = new Database();
+
+$db->insert(
+    "INSERT INTO usuarios(nome, email, senha)
+    VALUES('Jocemar' , 'jojo@ig.com' , '4321')"
+);
+
+$resultDb = $db->select(
+    "SELECT * FROM usuarios WHERE email = '$email'; "
+);
+
+if( isset($resultDb[0]) ) {
+    $emailDb = $resultDb[0]->email;
+    $senhaDb = $resultDb[0]->senha;
+} else {
+    $emailDb = null;
+    $senhaDb = null;
+}
+
+var_dump($resultDb[0]);
+
+//////////////////////////////////////////////////////////////////////////
+
     if($email != null && $pass != null) {
-        if($email == 'andre@bol.com.br' && $pass == '1234') {
+        if($email == $emailDb && $pass == $senhaDb) {
             $msg = 'Bem vindo!';
-            $redirect = "<meta http-equiv='refresh' content='3; url=https://qi.edu.br' />";
+            //$redirect = "<meta http-equiv='refresh' content='3; url=https://qi.edu.br' />";
         } else {
             $msg = 'Acesso negado!';
-            $redirect = "<meta http-equiv='refresh' content='3; url=../index.php' />";
+            //$redirect = "<meta http-equiv='refresh' content='3; url=../index.php' />";
         }
     }
 

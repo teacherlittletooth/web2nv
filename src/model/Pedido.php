@@ -6,6 +6,7 @@ class Pedido
 {
     //Atributos
     private $codPedido;
+    public $dataHora;
     public $itens;
     public $pgto;
     public $qtde;
@@ -24,6 +25,7 @@ class Pedido
     {
         //Informar o fuso horário
         date_default_timezone_set("America/Sao_Paulo");
+        $this->dataHora = date('Y-m-d H:i:s');
         //Informar a data e hora
         return "<br>Data e hora do pedido: " . date("d/m/Y - H:i:s");
     }

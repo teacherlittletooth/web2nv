@@ -7,25 +7,24 @@
         $email = null;
     }
 
+
     if( isset($_POST['pass']) ) {
         $pass = $_POST['pass'];
     } else {
         $pass = null;
     }
 
+
 //////////////////////////////////////////////////////////////////////////
 
 require_once "../src/model/Database.php";
 $db = new Database();
 
-$db->insert(
-    "INSERT INTO usuarios(nome, email, senha)
-    VALUES('Jocemar' , 'jojo@ig.com' , '4321')"
-);
-
 $resultDb = $db->select(
     "SELECT * FROM usuarios WHERE email = '$email'; "
 );
+
+//var_dump($resultDb);
 
 if( isset($resultDb[0]) ) {
     $emailDb = $resultDb[0]->email;
@@ -35,7 +34,7 @@ if( isset($resultDb[0]) ) {
     $senhaDb = null;
 }
 
-var_dump($resultDb[0]);
+//var_dump($resultDb[0]);
 
 //////////////////////////////////////////////////////////////////////////
 

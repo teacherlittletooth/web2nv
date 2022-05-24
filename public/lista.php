@@ -23,6 +23,8 @@ use Database\Database;
         <th>Quantidade</th>
         <th>Pagamento</th>
         <th>Entrega</th>
+        <th></th>
+        <th></th>
     </thead>
     <tbody>
 
@@ -34,6 +36,9 @@ use Database\Database;
             <td> <?= $linha->qtde ?> </td>
             <td> <?= $linha->pgto ?> </td>
             <td> <?= $linha->entrega ?> </td>
+            <td>
+                <a href="../public/atualiza.php?cod=<?= $linha->cod ?>">Editar</a>
+            </td>
         </tr>
     <?php endforeach; ?>
 

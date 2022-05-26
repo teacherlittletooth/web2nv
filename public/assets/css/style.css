@@ -14,3 +14,8 @@ footer {
     color: grey;
     margin-top: 5%;
 }
+
+i {
+    cursor: pointer;
+    color: blue;
+}

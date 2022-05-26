@@ -142,10 +142,10 @@ class Database {
         try {
             if(!empty($parameters)){
                 $myExecute = $this->connection->prepare($sql);
-                $myExecute->execute($parameters);
+                $result = $myExecute->execute($parameters);
             } else {
                 $myExecute = $this->connection->prepare($sql);
-                $myExecute->execute();
+                $result = $myExecute->execute();
             }
         } catch (PDOException $error) {
             var_dump($error);
@@ -153,6 +153,7 @@ class Database {
         }
 
         $this->disconnect();
+        return $result;
    }
    
    ////////////////////////////////////////////////////****GENÉRICA****//////////

@@ -37,12 +37,30 @@ use Database\Database;
             <td> <?= $linha->pgto ?> </td>
             <td> <?= $linha->entrega ?> </td>
             <td>
-                <a href="../public/atualiza.php?cod=<?= $linha->cod ?>">Editar</a>
+                <a title="Editar" href="../public/atualiza.php?cod=<?= $linha->cod ?>">
+                    <i class="bi bi-pen"></i>
+                </a>
             </td>
+            <td>
+                <a title="Apagar" onclick="confirmaDelete( <?= $linha->cod ?> );" >
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        
         </tr>
     <?php endforeach; ?>
 
     </tbody>
 </table>
+
+<script>
+    function confirmaDelete(id) {
+        if( confirm("Deseja excluir o pedido "+ id +"?") ) {
+            window.location.href="../data/delete.php?cod="+id;
+        } else {
+            alert("Exclusão cancelada!");
+        }
+    }
+</script>
 
 <?php require_once "../src/views/footer.php"; ?>
